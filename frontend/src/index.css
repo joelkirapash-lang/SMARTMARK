@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #16233F;
+}
+
+h1, h2, h3, .font-display {
+  font-family: 'Source Serif 4', Georgia, serif;
+}
+
+::selection {
+  background: #C9A227;
+  color: #0F1B33;
+}
+
+.focus-ring:focus-visible {
+  outline: 2px solid #C9A227;
+  outline-offset: 2px;
+}
+
+@media print {
+  .no-print { display: none !important; }
+  body { background: white !important; }
+  .print-sheet {
+    box-shadow: none !important;
+    border: none !important;
+    margin: 0 !important;
+  }
+}
