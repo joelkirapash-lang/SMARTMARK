@@ -21,7 +21,8 @@ async function request(path, { method = "GET", body, headers = {}, isForm = fals
   if (!isForm) finalHeaders["Content-Type"] = "application/json";
   if (token) finalHeaders["Authorization"] = `Bearer ${token}`;
 
-  const res = await fetch(`/api${path}`, {
+  const API_BASE = import.meta.env.VITE_API_BASE_URL || "/api";
+  const res = await fetch(`${API_BASE}${path}`, {
     method,
     headers: finalHeaders,
     body: isForm ? body : body ? JSON.stringify(body) : undefined,
@@ -48,5 +49,5 @@ export const api = {
   put: (path, body) => request(path, { method: "PUT", body }),
   del: (path) => request(path, { method: "DELETE" }),
   postForm: (path, formData) => request(path, { method: "POST", body: formData, isForm: true }),
-  downloadUrl: (path) => `/api${path}`,
+  downloadUrl: (path) => `${(import.meta.env.VITE_API_BASE_URL || "/api")}${path}`,
 };
